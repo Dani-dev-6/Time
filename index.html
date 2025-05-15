@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>디지털 시계</title>
+    <!-- Google Fonts 연결 -->
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <style>
-	.Jua {
-  		font-family: "Jua", serif;
- 		font-weight: 400;
- 		font-style: normal;
-			}
         body {
             font-family: 'Jua', sans-serif;
             display: flex;
@@ -19,6 +16,9 @@
             margin: 0;
             background-color: #333;
             color: white;
+            background-image: url('./img.png');
+            background-size: cover;
+            background-position: center;
         }
 
         #clock {
@@ -27,11 +27,6 @@
             background-color: rgba(0, 0, 0, 0.473);
             padding: 20px;
             border-radius: 10px;
-        }
-        body {
-            background-image: url('./img.png');
-            background-size: cover;
-            background-position: center;
         }
     </style>
 </head>
@@ -58,7 +53,7 @@
         }
 
         // 1초마다 시계를 갱신
-        setInterval(updateClock, 1);
+        setInterval(updateClock, 1000);
 
         // 처음 페이지 로드 시 시계 업데이트
         updateClock();
