@@ -3,44 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>흐린 배경 이미지</title>
+    <title>디지털 시계</title>
+    <!-- Google Fonts 연결 -->
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            height: 100vh;
+            font-family: 'Jua', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #333;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
             color: white;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-        }
-
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('./img.png'); /* 이미지 경로 설정 */
+            background-image: url('./img.png'); /* 배경 이미지 경로 */
             background-size: cover;
             background-position: center;
-            filter: blur(10px); /* 흐림 효과 */
-            z-index: -1; /* 배경 레이어 뒤로 보내기 */
         }
 
-        .content {
-            z-index: 1; /* 콘텐츠 레이어 앞으로 */
-            text-align: center;
+        #clock {
+            font-size: 60px;
+            letter-spacing: 2px;
+            background-color: rgba(0, 0, 0, 0.473);
+            padding: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="content">
-        <h1>흐린 배경 이미지 위의 콘텐츠</h1>
-        <p>이 텍스트는 흐린 배경 위에 표시됩니다.</p>
-    </div>
+    <div id="clock"></div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            // 24시간제를 12시간제로 변환 (AM/PM)
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;  // 0을 12로 표시
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            // 시계 표시 형식
+            const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // 1초마다 시계를 갱신
+        setInterval(updateClock, 1000);
+
+        // 처음 페이지 로드 시 시계 업데이트
+        updateClock();
+    </script>
 </body>
 </html>
